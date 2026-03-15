@@ -1,74 +1,57 @@
-# Navitra: Intelligent End-to-End Travel Planning & Hospitality Management Platform
+# VERIXA - Secure Attendance System
 
-Navitra is a comprehensive ecosystem designed for modern travel management, catering to Travelers, Tour Guides, and Hotel Managers. Built with Next.js and Supabase, it provides a seamless and responsive platform for planning, booking, and managing every aspect of the travel experience.
+VERIXA is a comprehensive, role-based, secure attendance management system built with React Native (Expo) and Supabase. It offers a seamless experience for students, faculty, management, and controllers to manage and track attendance effectively using modern web and mobile capabilities.
 
-## ✨ Features
+## Features
 
-### For Travelers
-*   **Intuitive Search & Booking:** Easily search for flights, hotels, and tours.
-*   **Trip Management:** Interactive dashboard to manage upcoming and past trips.
-*   **Interactive Maps:** Visual exploration of destinations and itineraries using Leaflet.
+- **Role-Based Access Control:** Dedicated dashboards for Students, Faculty, Management, and Controllers.
+- **Secure Authentication:** Integrated with Supabase Auth for robust user management.
+- **Location-Based Attendance:** Verifies student attendance using geolocation tracking (`expo-location`).
+- **QR Code Integration:** Easily mark and verify attendance using QR codes (`react-native-qrcode-svg`).
+- **Real-time Database:** Powered by Supabase PostgreSQL with Row Level Security (RLS) ensuring data privacy.
+- **Cross-Platform:** Built with Expo, supporting both iOS and Android platforms seamlessly.
 
-### For Hotel Managers
-*   **Property Dashboard:** Comprehensive view of hotel occupancy, bookings, and revenue metrics.
-*   **Analytics:** Detailed operational analytics including REVPAR, ADR, and Competitor Pricing.
-*   **Room Management:** Tools to manage inventory and pricing dynamically.
+## Tech Stack
 
-### For Tour Guides
-*   **Tour Dashboard:** Specialized view for managing tour schedules and participant lists.
-*   **Itinerary Building:** Create and refine complex multi-day tours.
+- **Frontend:** React Native, Expo, React Navigation, Expo Router
+- **Backend & Database:** Supabase (PostgreSQL, Auth, RLS)
+- **Styling:** Custom theming with React Native StyleSheet
+- **Icons:** Expo Vector Icons
 
-## 🛠️ Tech Stack
+## Project Structure
 
-*   **Frontend:** [Next.js 15+](https://nextjs.org/) (React 19), [Tailwind CSS v4](https://tailwindcss.com/), [Lucide React](https://lucide.dev/) for elegant icons.
-*   **Backend / Database / Auth:** [Supabase](https://supabase.com/).
-*   **Maps:** [Leaflet](https://leafletjs.com/) with React-Leaflet.
-*   **Language:** TypeScript.
-*   **Package Manager:** npm.
+- `app/`: Expo Router file-based routing containing screens like `login`, `signup`, and role dashboards inside `(tabs)`.
+- `components/`: Reusable UI components including specific dashboards (`StudentDashboard`, `FacultyDashboard`, etc.), `Button`, `Input`, and more.
+- `context/`: React Context providers (e.g., `AuthContext`).
+- `database_setup.sql`: Complete PostgreSQL schema with RLS policies and triggers.
 
-## 🚀 Getting Started
+## Prerequisites
 
-Follow these steps to set up the project locally.
+- Node.js (v18 or higher recommended)
+- npm or yarn
+- Expo CLI
+- Supabase account (for backend setup)
 
-### Prerequisites
-*   Node.js (v20+)
-*   npm
-*   A Supabase project (for Authentication & Database)
+## Getting Started
 
-### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yogita-singh-9/Verixa.git
+   cd verixa
+   ```
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/yogita-singh-9/Navitra.git
-    cd Navitra/intelligent-travel-platform
-    ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-2.  **Install dependencies:**
-    This project uses a workspace setup. The main web application is located in `apps/web`.
-    ```bash
-    npm install
-    # or install specifically on the web app:
-    # cd apps/web && npm install
-    ```
+3. **Database Setup:**
+   - Create a new project in Supabase.
+   - Run the SQL script located in `database_setup.sql` in your Supabase SQL Editor to spin up all necessary tables, types, and RLS policies.
+   - Configure your Supabase URL and Anon Key in your environment variables.
 
-3.  **Environment Variables:**
-    Create a `.env` file in the root of the project (or inside `apps/web`) based on `.env.example`.
-    ```env
-    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-    ```
-
-4.  **Run the development server:**
-    ```bash
-    npm run dev
-    # This will start the Next.js app on http://localhost:3000
-    ```
-
-## 📁 Project Structure
-
-The project follows a monorepo-style setup:
-
-*   `apps/web/`: The main Next.js application containing all user interfaces.
-    *   `src/app/`: The Next.js App Router, with grouped routes for `(auth)`, `(traveler)`, `(tour-guide)`, and `(hotel-manager)`.
-    *   `src/components/`: Reusable React components.
+4. **Start the application:**
+   ```bash
+   npx expo start
+   ```
     *   `src/lib/`: Utility functions, including Supabase client configurations.
